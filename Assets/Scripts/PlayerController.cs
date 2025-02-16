@@ -4,16 +4,13 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Setting")]
     [SerializeField] private float moveSpeed;
+    [SerializeField] private int roadWidht;
 
     [Header("Control")]
     [SerializeField] private float slideSpeed;
     private Vector3 clickScreenPosition;
     private Vector3 clickPlayerPosition;
-
-    void Start()
-    {
-        
-    }
+    [SerializeField] private CrowdSystem сrowdSystem;
 
     private void Update()
     {
@@ -41,6 +38,9 @@ public class PlayerController : MonoBehaviour
             
             Vector3 position = transform.position;
             position.x = clickPlayerPosition.x + xScreenDifference;
+
+            position.x = Mathf.Clamp(position.x, - roadWidht / 2 + сrowdSystem.GetCrowdRadius(), roadWidht / 2 - сrowdSystem.GetCrowdRadius());
+
             transform.position = position;
 
             //transform.position = clickPlayerPosition + Vector3.right * xScreenDifference;

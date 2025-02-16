@@ -1,0 +1,14 @@
+using UnityEngine;
+using TMPro;
+
+public class CrowdCounter : MonoBehaviour
+{
+    [Header("Elemets")]
+    [SerializeField] private TextMeshPro crowdCounterText;
+    [SerializeField] private Transform runnersParent;
+
+    void Update()
+    {
+        crowdCounterText.text = runnersParent.childCount.ToString();
+    }
+}
