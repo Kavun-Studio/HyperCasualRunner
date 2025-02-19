@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDection : MonoBehaviour
 {
@@ -33,7 +34,10 @@ public class PlayerDection : MonoBehaviour
         
             else if(detectedColliders[i].tag == "Finish")
             {
-                Debug.Log("Hit Funish Line"); 
+                PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+                Debug.Log("Hit Funish Line");
+                GameManager.instance.SetGameState(GameManager.GameState.LevelComplete);
+                //SceneManager.LoadScene(0); 
             }
         }
     }

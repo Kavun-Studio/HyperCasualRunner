@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [Header("Setting")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private int roadWidht;
+    [SerializeField] private bool canMove;
+
+    [SerializeField] private PlayerAnimator playerAnimator;
 
     [Header("Control")]
     [SerializeField] private float slideSpeed;
@@ -12,10 +17,55 @@ public class PlayerController : MonoBehaviour
     private Vector3 clickPlayerPosition;
     [SerializeField] private CrowdSystem сrowdSystem;
 
+    private void Awake()
+    {
+        if(instance != null)
+            Destroy(gameObject);
+        else
+            instance = this;
+    }
+
+    private void Start()
+    {
+        GameManager.onGameStateChanged += GameStateChangeCallback;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChanged -= GameStateChangeCallback;
+    }
+
     private void Update()
     {
-        MoveSpeedForward();
-        ManageControl();
+        if (canMove)
+        {
+            MoveSpeedForward();
+            ManageControl();
+        }
+    }
+
+    private void GameStateChangeCallback(GameManager.GameState gameState)
+    {
+        if(gameState == GameManager.GameState.Game)
+            StartMoving();
+            
+        else if(gameState == GameManager.GameState.GameOver)
+            StopMoving();
+
+        else if (gameState == GameManager.GameState.LevelComplete)
+            StopMoving();
+    }
+
+    private void StartMoving()
+    {
+        canMove = true;
+        playerAnimator.Run();
+    }
+
+    private void StopMoving()
+    {
+        canMove = false;
+        playerAnimator.Idle();
     }
 
     private void MoveSpeedForward()

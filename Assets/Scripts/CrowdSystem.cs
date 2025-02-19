@@ -3,6 +3,7 @@ using UnityEngine;
 public class CrowdSystem : MonoBehaviour
 {
     [Header("Elemets")]
+    [SerializeField] private PlayerAnimator playerAnimator;
     [SerializeField] private Transform runnersParent;
     [SerializeField] private GameObject runnerPrefab;
     
@@ -13,19 +14,25 @@ public class CrowdSystem : MonoBehaviour
 
     void Update()
     {
+        if(!GameManager.instance.isGameState())
+            return;
+    
         PlaceRunner();
+    
+        if(runnersParent.childCount <= 0)
+            GameManager.instance.SetGameState(GameManager.GameState.GameOver);
     }
 
     private void PlaceRunner()
     {
         for(int i = 0; i < runnersParent.childCount; i ++)
         {
-                Vector3 childLocalPosition = PlayerRunnerLocalPosition(i);
+                Vector3 childLocalPosition = PlayerRunnerLocalPositions(i);
                 runnersParent.GetChild(i).localPosition = childLocalPosition;
         }
     }
 
-    private Vector3 PlayerRunnerLocalPosition(int index)
+    private Vector3 PlayerRunnerLocalPositions(int index)
     {
         float x = radius * Mathf.Sqrt(index) * Mathf.Cos(Mathf.Deg2Rad * index * angel);
         float z = radius * Mathf.Sqrt(index) * Mathf.Sin(Mathf.Deg2Rad * index * angel);
@@ -65,6 +72,7 @@ public class CrowdSystem : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
             Instantiate(runnerPrefab, runnersParent);
+        playerAnimator.Run();
     }
 
     private void RemoveRunners(int amount)
