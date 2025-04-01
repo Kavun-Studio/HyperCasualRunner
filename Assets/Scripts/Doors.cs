@@ -26,11 +26,6 @@ public class Doors : MonoBehaviour
         ConfigureDoors();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void ConfigureDoors()
     {
         switch (rightDoorBonusType)     //config right door

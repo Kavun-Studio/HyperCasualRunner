@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1656983756523938316
 Transform:
@@ -64,7 +64,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3890339072540841037
 Transform:
@@ -180,6 +180,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5267186609503637963, guid: 80dbc6b0ce700a441b62303ca664e14f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684081146341193592, guid: 80dbc6b0ce700a441b62303ca664e14f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7389522974941718427, guid: 80dbc6b0ce700a441b62303ca664e14f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -220,9 +228,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7898763882507776065, guid: 80dbc6b0ce700a441b62303ca664e14f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8469759107473057456, guid: 80dbc6b0ce700a441b62303ca664e14f, type: 3}
       propertyPath: m_Name
       value: EnemyGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469759107473057456, guid: 80dbc6b0ce700a441b62303ca664e14f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
